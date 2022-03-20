@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet, Text, TextInput, View, TouchableOpacity,
 } from 'react-native';
@@ -14,6 +14,11 @@ const Stack = createStackNavigator();
 
 function HomeScreen(props) {
   const { navigation } = props;
+  const [firstName1, setFirstName1] = useState('');
+  const [lastName1, setLastName1] = useState('');
+  const [firstName2, setFirstName2] = useState('');
+  const [lastName2, setLastName2] = useState('');
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -30,20 +35,52 @@ function HomeScreen(props) {
         <View>
           <Text style={styles.inputTitle}>Your Name (in ASCII)</Text>
           <View style={styles.inputBoxes}>
-            <TextInput style={styles.inputFirst} value="First Name" />
-            <TextInput style={styles.inputLast} value="Last Name" />
+            <TextInput
+              style={styles.inputFirst}
+              value={firstName1}
+              onChangeText={(text) => { setFirstName1(text); }}
+              placeholder="First Name"
+            />
+            <TextInput
+              style={styles.inputFirst}
+              value={lastName1}
+              onChangeText={(text) => { setLastName1(text); }}
+              placeholder="Last Name"
+            />
           </View>
         </View>
         <View>
           <Text style={styles.inputTitle}>Your Partner&apos;s Name (in ASCII)</Text>
           <View style={styles.inputBoxes}>
-            <TextInput style={styles.inputFirst} value="First Name" />
-            <TextInput style={styles.inputLast} value="Last Name" />
+            <TextInput
+              style={styles.inputFirst}
+              value={firstName2}
+              onChangeText={(text) => { setFirstName2(text); }}
+              placeholder="First Name"
+            />
+            <TextInput
+              style={styles.inputFirst}
+              value={lastName2}
+              onChangeText={(text) => { setLastName2(text); }}
+              placeholder="Last Name"
+            />
           </View>
         </View>
         <View style={styles.buttons}>
-          <Button label="相性を調べる" />
-          <Button label="クリア" />
+          <Button
+            label="相性を調べる"
+            onPress={() => {
+              navigation.navigate('Result', {
+                f1: firstName1,
+                l1: lastName1,
+                f2: firstName2,
+                l2: lastName2,
+              });
+            }}
+          />
+          <Button
+            label="クリア"
+          />
         </View>
       </View>
       {/* eslint-disable-next-line */}
@@ -56,7 +93,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Result"
+        initialRouteName="HomeScreen"
         screenOptions={{
           headerStyle: { backgroundColor: '#467FD3' },
           headerTitleStyle: { color: '#ffffff' },
