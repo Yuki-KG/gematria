@@ -1,12 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
-  StyleSheet, Text, TextInput, View,
+  StyleSheet, Text, TextInput, View, TouchableOpacity,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import AppBar from './components/AppBar';
+import Button from './components/Button';
+import About from './screens/About';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function HomeScreen(props) {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
       <AppBar />
@@ -14,30 +21,43 @@ export default function App() {
         <View style={styles.leadText}>
           <Text>あなたと相手の名前の霊数から相性を占います</Text>
         </View>
-        <View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('About');
+          }}
+        >
           <Text style={styles.link}>霊数とは？</Text>
-        </View>
+        </TouchableOpacity>
         <View>
-          <Text style={styles.inputTitle}>あなたの名前（ローマ字）</Text>
-          <View>
-            <TextInput style={styles.inputFirst} value="ファーストネーム" />
-            <TextInput style={styles.inputLast} value="姓" />
-          </View>
-        </View>
-        <View>
-          <Text style={styles.inputTitle}>相手の名前（ローマ字）</Text>
+          <Text style={styles.inputTitle}>Your Name (in ASCII)</Text>
           <View style={styles.inputBoxes}>
-            <TextInput style={styles.inputFirst} value="ファーストネーム" />
-            <TextInput style={styles.inputLast} value="姓" />
+            <TextInput style={styles.inputFirst} value="First Name" />
+            <TextInput style={styles.inputLast} value="Last Name" />
           </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <Text style={styles.buttonLabel}>相性を調べる</Text>
+        <View>
+          <Text style={styles.inputTitle}>Your Partner&apos;s Name (in ASCII)</Text>
+          <View style={styles.inputBoxes}>
+            <TextInput style={styles.inputFirst} value="First Name" />
+            <TextInput style={styles.inputLast} value="Last Name" />
+          </View>
         </View>
+        <Button label="相性を調べる" />
       </View>
       {/* eslint-disable-next-line */}
       <StatusBar style="auto" />
     </View>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="About" component={About} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -65,13 +85,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 8,
   },
+  inputBoxes: {
+    flexDirection: 'row',
+  },
   inputFirst: {
     fontSize: 16,
     height: 32,
     backgroundColor: '#ffffff',
     borderColor: '#dddddd',
     borderWidth: 1,
-    alignItems: 'flex-start',
     width: '49%',
     paddingHorizontal: 8,
     marginBottom: 8,
@@ -82,24 +104,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderColor: '#dddddd',
     borderWidth: 1,
-    position: 'absolute',
-    right: 0,
     width: '49%',
     paddingHorizontal: 8,
     marginBottom: 8,
-  },
-  buttonContainer: {
-    backgroundColor: '#467FD3',
-    borderRadius: 4,
-    alignSelf: 'flex-start',
-    marginTop: 12,
-  },
-  buttonLabel: {
-    fontSize: 16,
-    lineHeight: 32,
-    paddingVertical: 8,
-    paddingHorizontal: 32,
-    color: '#ffffff',
   },
   link: {
     marginTop: 8,
