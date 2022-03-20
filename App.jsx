@@ -98,7 +98,7 @@ export default function App() {
           headerStyle: { backgroundColor: '#467FD3' },
           headerTitleStyle: { color: '#ffffff' },
           headerTitle: 'Gematria',
-          headerTintColor: '#FFFFFF,',
+          headerTintColor: '#ffffff',
           headerBackTitle: 'Back',
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
