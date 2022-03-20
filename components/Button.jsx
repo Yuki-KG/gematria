@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignSelf: 'flex-start',
     marginTop: 12,
+    marginRight: 4,
   },
   buttonLabel: {
     fontSize: 16,

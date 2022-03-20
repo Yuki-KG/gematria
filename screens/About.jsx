@@ -3,12 +3,9 @@ import {
   StyleSheet, View, ScrollView, Text,
 } from 'react-native';
 
-import AppBar from '../components/AppBar';
-
 export default function About() {
   return (
     <View style={styles.container}>
-      <AppBar />
       <ScrollView style={styles.content}>
         <View>
           <Text style={styles.title}>霊数とは？</Text>

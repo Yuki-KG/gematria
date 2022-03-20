@@ -4,11 +4,11 @@ import {
   StyleSheet, Text, TextInput, View, TouchableOpacity,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 
-import AppBar from './components/AppBar';
 import Button from './components/Button';
 import About from './screens/About';
+import Result from './screens/Result';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +16,6 @@ function HomeScreen(props) {
   const { navigation } = props;
   return (
     <View style={styles.container}>
-      <AppBar />
       <View style={styles.content}>
         <View style={styles.leadText}>
           <Text>あなたと相手の名前の霊数から相性を占います</Text>
@@ -42,7 +41,10 @@ function HomeScreen(props) {
             <TextInput style={styles.inputLast} value="Last Name" />
           </View>
         </View>
-        <Button label="相性を調べる" />
+        <View style={styles.buttons}>
+          <Button label="相性を調べる" />
+          <Button label="クリア" />
+        </View>
       </View>
       {/* eslint-disable-next-line */}
       <StatusBar style="auto" />
@@ -53,9 +55,20 @@ function HomeScreen(props) {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Result"
+        screenOptions={{
+          headerStyle: { backgroundColor: '#467FD3' },
+          headerTitleStyle: { color: '#ffffff' },
+          headerTitle: 'Gematria',
+          headerTintColor: '#FFFFFF,',
+          headerBackTitle: 'Back',
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="About" component={About} />
+        <Stack.Screen name="Result" component={Result} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -113,5 +126,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 24,
     color: '#467FD3',
+  },
+  buttons: {
+    flexDirection: 'row',
   },
 });
