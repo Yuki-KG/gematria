@@ -19,6 +19,11 @@ function HomeScreen(props) {
   const [firstName2, setFirstName2] = useState('');
   const [lastName2, setLastName2] = useState('');
 
+  let textInput1;
+  let textInput2;
+  let textInput3;
+  let textInput4;
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -36,12 +41,14 @@ function HomeScreen(props) {
           <Text style={styles.inputTitle}>Your Name (in ASCII)</Text>
           <View style={styles.inputBoxes}>
             <TextInput
+              ref={(input) => { textInput1 = input; }}
               style={styles.inputFirst}
               value={firstName1}
               onChangeText={(text) => { setFirstName1(text); }}
               placeholder="First Name"
             />
             <TextInput
+              ref={(input) => { textInput2 = input; }}
               style={styles.inputFirst}
               value={lastName1}
               onChangeText={(text) => { setLastName1(text); }}
@@ -53,12 +60,14 @@ function HomeScreen(props) {
           <Text style={styles.inputTitle}>Your Partner&apos;s Name (in ASCII)</Text>
           <View style={styles.inputBoxes}>
             <TextInput
+              ref={(input) => { textInput3 = input; }}
               style={styles.inputFirst}
               value={firstName2}
               onChangeText={(text) => { setFirstName2(text); }}
               placeholder="First Name"
             />
             <TextInput
+              ref={(input) => { textInput4 = input; }}
               style={styles.inputFirst}
               value={lastName2}
               onChangeText={(text) => { setLastName2(text); }}
@@ -80,6 +89,12 @@ function HomeScreen(props) {
           />
           <Button
             label="クリア"
+            onPress={() => {
+              textInput1.clear();
+              textInput2.clear();
+              textInput3.clear();
+              textInput4.clear();
+            }}
           />
         </View>
       </View>
