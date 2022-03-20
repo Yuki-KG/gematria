@@ -38,7 +38,7 @@ function HomeScreen(props) {
           <Text style={styles.link}>霊数とは？</Text>
         </TouchableOpacity>
         <View>
-          <Text style={styles.inputTitle}>Your Name (in ASCII)</Text>
+          <Text style={styles.inputTitle}>あなたの名前（ローマ字）</Text>
           <View style={styles.inputBoxes}>
             <TextInput
               ref={(input) => { textInput1 = input; }}
@@ -57,7 +57,7 @@ function HomeScreen(props) {
           </View>
         </View>
         <View>
-          <Text style={styles.inputTitle}>Your Partner&apos;s Name (in ASCII)</Text>
+          <Text style={styles.inputTitle}>相手の名前（ローマ字）</Text>
           <View style={styles.inputBoxes}>
             <TextInput
               ref={(input) => { textInput3 = input; }}

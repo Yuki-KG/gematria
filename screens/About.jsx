@@ -66,11 +66,11 @@ export default function About() {
           </Text>
           <Text style={styles.explanation}>
             {/* eslint-disable-next-line */}
-            　このGEMATRIA《ゲマトリア》占数術を活用すれば、あなたの名前に隠された性格はもちろん、あなたと彼女の相性までがはっきりと分かってしまうのです。
+            　このGEMATRIA《ゲマトリア》占数術を活用すれば、あなたの名前に隠された性格はもちろん、あなたと相手の相性までがはっきりと分かってしまうのです。
           </Text>
           <Text style={styles.explanation}>
             {/* eslint-disable-next-line */}
-            　このアプリを使って、あなたと彼女の名前に隠された霊数を割り出し、
+            　このアプリを使って、あなたと相手の名前に隠された霊数を割り出し、
             シュメールの太古から伝わるGEMATRIA《ゲマトリア》占数術で、２人の性格とこれからの運命を占ってみてください。
           </Text>
           <Text>
