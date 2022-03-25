@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import {
-  StyleSheet, Text, TextInput, View, TouchableOpacity,
+  StyleSheet, Text, TextInput, View, TouchableOpacity, Alert,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
@@ -79,12 +79,22 @@ function HomeScreen(props) {
           <Button
             label="相性を調べる"
             onPress={() => {
-              navigation.navigate('Result', {
-                f1: firstName1,
-                l1: lastName1,
-                f2: firstName2,
-                l2: lastName2,
-              });
+              if ((firstName1 === '') && (lastName1 === '')) {
+                Alert.alert('あなたの名前を入力してください');
+              } else if ((firstName2 === '') && (lastName2 === '')) {
+                Alert.alert('相手の名前を入力してください');
+              } else if ((firstName1.match(/[^a-zA-Z]/)) || (lastName1.match(/[^a-zA-Z]/))) {
+                Alert.alert('あなたの名前が不正です');
+              } else if ((firstName2.match(/[^a-zA-Z]/)) || (lastName2.match(/[^a-zA-Z]/))) {
+                Alert.alert('相手の名前が不正です');
+              } else {
+                navigation.navigate('Result', {
+                  f1: firstName1,
+                  l1: lastName1,
+                  f2: firstName2,
+                  l2: lastName2,
+                });
+              }
             }}
           />
           <Button
