@@ -10,7 +10,7 @@ export default function About() {
         <View>
           <Text style={styles.title}>霊数とは？</Text>
         </View>
-        <View>
+        <View style={styles.text}>
           <Text style={styles.explanation}>
             {/* eslint-disable-next-line */}
             　私たちが普段何気なく使っている文字。
@@ -100,11 +100,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 12,
   },
+  text: {
+    paddingBottom: 64,
+  },
   explanation: {
     fontSize: 16,
     color: '#000000',
   },
   signature: {
-    alignItems: 'flex-end',
+    fontSize: 16,
+    color: '#000000',
   },
 });

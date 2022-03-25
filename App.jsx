@@ -28,7 +28,7 @@ function HomeScreen(props) {
     <View style={styles.container}>
       <View style={styles.content}>
         <View style={styles.leadText}>
-          <Text>あなたと相手の名前の霊数から相性を占います</Text>
+          <Text>あなたと相手の名前の霊数から相性を占います。</Text>
         </View>
         <TouchableOpacity
           onPress={() => {
@@ -80,12 +80,16 @@ function HomeScreen(props) {
             label="相性を調べる"
             onPress={() => {
               if ((firstName1 === '') && (lastName1 === '')) {
+                // 姓も名も空欄の場合はアラートを出す
                 Alert.alert('あなたの名前を入力してください');
               } else if ((firstName2 === '') && (lastName2 === '')) {
+                // 姓も名も空欄の場合はアラートを出す
                 Alert.alert('相手の名前を入力してください');
               } else if ((firstName1.match(/[^a-zA-Z]/)) || (lastName1.match(/[^a-zA-Z]/))) {
+                // 姓か名にアルファベット以外の文字がある場合はアラートを出す
                 Alert.alert('あなたの名前が不正です');
               } else if ((firstName2.match(/[^a-zA-Z]/)) || (lastName2.match(/[^a-zA-Z]/))) {
+                // 姓か名にアルファベット以外の文字がある場合はアラートを出す
                 Alert.alert('相手の名前が不正です');
               } else {
                 navigation.navigate('Result', {
